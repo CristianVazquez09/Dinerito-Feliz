@@ -37,13 +37,13 @@ public class IngresarProductos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtEjemplares = new javax.swing.JTextField();
+        txtPrecioNeto = new javax.swing.JTextField();
+        txtPrecioVenta = new javax.swing.JTextField();
+        txtDistribuidora = new javax.swing.JTextField();
+        txtFechaEntrega = new javax.swing.JTextField();
+        txtFechaExp = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -99,19 +99,19 @@ public class IngresarProductos extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha de expiración:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 120, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 180, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 180, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtEjemplares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtEjemplaresActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 80, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 80, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 80, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 110, -1));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 110, -1));
+        jPanel1.add(txtEjemplares, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 80, -1));
+        jPanel1.add(txtPrecioNeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 80, -1));
+        jPanel1.add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 80, -1));
+        jPanel1.add(txtDistribuidora, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
+        jPanel1.add(txtFechaEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 110, -1));
+        jPanel1.add(txtFechaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,9 +127,9 @@ public class IngresarProductos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtEjemplaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEjemplaresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtEjemplaresActionPerformed
 
 
 
@@ -145,12 +145,12 @@ public class IngresarProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtDistribuidora;
+    private javax.swing.JTextField txtEjemplares;
+    private javax.swing.JTextField txtFechaEntrega;
+    private javax.swing.JTextField txtFechaExp;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrecioNeto;
+    private javax.swing.JTextField txtPrecioVenta;
     // End of variables declaration//GEN-END:variables
 }
