@@ -8,6 +8,7 @@ package com.mycompany.dineritoFeliz.igu;
  *
  * @author malaf
  */
+
 public class Menu extends javax.swing.JFrame {
 
     /**
@@ -15,6 +16,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+       
     }
 
     /**

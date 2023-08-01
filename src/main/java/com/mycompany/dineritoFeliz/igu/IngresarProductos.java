@@ -44,6 +44,8 @@ public class IngresarProductos extends javax.swing.JFrame {
         txtDistribuidora = new javax.swing.JTextField();
         txtFechaEntrega = new javax.swing.JTextField();
         txtFechaExp = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jButton1.setText("jButton1");
 
@@ -65,9 +67,9 @@ public class IngresarProductos extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,10 +79,10 @@ public class IngresarProductos extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
-        jLabel2.setText("Distribuidora:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        jLabel2.setText("Tipo de producto:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         jLabel3.setText("Precio de venta:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
@@ -108,20 +110,28 @@ public class IngresarProductos extends javax.swing.JFrame {
         });
         jPanel1.add(txtEjemplares, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 80, -1));
         jPanel1.add(txtPrecioNeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 80, -1));
-        jPanel1.add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 80, -1));
+        jPanel1.add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 80, -1));
         jPanel1.add(txtDistribuidora, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
         jPanel1.add(txtFechaEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 110, -1));
         jPanel1.add(txtFechaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 110, -1));
+
+        jLabel9.setText("Distribuidora:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Abarrotes ", "Enlatados ", "Lacteos ", "Botanas ", "Dulcerio ", "Harinas y pan ", "Frutas y verduras ", "Bebidas ", "Bebidas Alcoholicas ", "Carnes y embutidos ", "Automedicacion ", "Higiene personal ", "Uso domestico ", "Otros ", " " }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -135,6 +145,7 @@ public class IngresarProductos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -143,6 +154,7 @@ public class IngresarProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtDistribuidora;

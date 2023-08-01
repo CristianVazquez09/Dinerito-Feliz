@@ -30,12 +30,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" pref="276" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" pref="387" max="-2" attributes="0"/>
+          <Component id="jPanel1" min="-2" pref="359" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -66,7 +69,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="250" height="50"/>
+              <AbsoluteConstraints x="0" y="0" width="280" height="50"/>
             </Constraint>
           </Constraints>
 
@@ -74,9 +77,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -109,11 +112,11 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Distribuidora:"/>
+            <Property name="text" type="java.lang.String" value="Tipo de producto:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="260" width="-1" height="-1"/>
+              <AbsoluteConstraints x="10" y="290" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -204,7 +207,7 @@
         <Component class="javax.swing.JTextField" name="txtPrecioVenta">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="140" width="80" height="-1"/>
+              <AbsoluteConstraints x="110" y="140" width="80" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -226,6 +229,48 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="230" width="110" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Distribuidora:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="260" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBox1">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="16">
+                <StringItem index="0" value="-"/>
+                <StringItem index="1" value="Abarrotes "/>
+                <StringItem index="2" value="Enlatados "/>
+                <StringItem index="3" value="Lacteos "/>
+                <StringItem index="4" value="Botanas "/>
+                <StringItem index="5" value="Dulcerio "/>
+                <StringItem index="6" value="Harinas y pan "/>
+                <StringItem index="7" value="Frutas y verduras "/>
+                <StringItem index="8" value="Bebidas "/>
+                <StringItem index="9" value="Bebidas Alcoholicas "/>
+                <StringItem index="10" value="Carnes y embutidos "/>
+                <StringItem index="11" value="Automedicacion "/>
+                <StringItem index="12" value="Higiene personal "/>
+                <StringItem index="13" value="Uso domestico "/>
+                <StringItem index="14" value="Otros "/>
+                <StringItem index="15" value=" "/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="120" y="290" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
