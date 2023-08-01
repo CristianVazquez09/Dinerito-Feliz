@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -24,6 +25,12 @@ public class DistribuidoraJpaController implements Serializable {
     public DistribuidoraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
+    public DistribuidoraJpaController() {
+        emf= Persistence.createEntityManagerFactory("DineritoFelizPU");
+    }
+    
+    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {

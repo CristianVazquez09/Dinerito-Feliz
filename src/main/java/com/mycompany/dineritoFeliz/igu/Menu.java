@@ -4,6 +4,8 @@
  */
 package com.mycompany.dineritoFeliz.igu;
 
+import com.mycompany.dineritoFeliz.logica.Producto;
+
 /**
  *
  * @author malaf
@@ -16,7 +18,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-       
+        
     }
 
     /**

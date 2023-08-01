@@ -4,16 +4,18 @@
  */
 package com.mycompany.dineritoFeliz.persistencia;
 
-import com.mycompany.dineritoFeliz.logica.Producto;
-import com.mycompany.dineritoFeliz.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import com.mycompany.dineritoFeliz.logica.Distribuidora;
+import com.mycompany.dineritoFeliz.logica.Producto;
+import com.mycompany.dineritoFeliz.persistencia.exceptions.NonexistentEntityException;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -24,6 +26,12 @@ public class ProductoJpaController implements Serializable {
     public ProductoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
+    public ProductoJpaController() {
+        emf= Persistence.createEntityManagerFactory("DineritoFelizPU");
+    }
+    
+    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -35,7 +43,16 @@ public class ProductoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Distribuidora distribuidora = producto.getDistribuidora();
+            if (distribuidora != null) {
+                distribuidora = em.getReference(distribuidora.getClass(), distribuidora.getId());
+                producto.setDistribuidora(distribuidora);
+            }
             em.persist(producto);
+            if (distribuidora != null) {
+                distribuidora.getListaProductos().add(producto);
+                distribuidora = em.merge(distribuidora);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -49,7 +66,22 @@ public class ProductoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Producto persistentProducto = em.find(Producto.class, producto.getId());
+            Distribuidora distribuidoraOld = persistentProducto.getDistribuidora();
+            Distribuidora distribuidoraNew = producto.getDistribuidora();
+            if (distribuidoraNew != null) {
+                distribuidoraNew = em.getReference(distribuidoraNew.getClass(), distribuidoraNew.getId());
+                producto.setDistribuidora(distribuidoraNew);
+            }
             producto = em.merge(producto);
+            if (distribuidoraOld != null && !distribuidoraOld.equals(distribuidoraNew)) {
+                distribuidoraOld.getListaProductos().remove(producto);
+                distribuidoraOld = em.merge(distribuidoraOld);
+            }
+            if (distribuidoraNew != null && !distribuidoraNew.equals(distribuidoraOld)) {
+                distribuidoraNew.getListaProductos().add(producto);
+                distribuidoraNew = em.merge(distribuidoraNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -78,6 +110,11 @@ public class ProductoJpaController implements Serializable {
                 producto.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
+            }
+            Distribuidora distribuidora = producto.getDistribuidora();
+            if (distribuidora != null) {
+                distribuidora.getListaProductos().remove(producto);
+                distribuidora = em.merge(distribuidora);
             }
             em.remove(producto);
             em.getTransaction().commit();

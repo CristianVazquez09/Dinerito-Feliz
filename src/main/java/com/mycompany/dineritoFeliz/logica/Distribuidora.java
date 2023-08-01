@@ -27,17 +27,20 @@ public class Distribuidora implements Serializable  {
     private String nomnre;
     private String numero;
     
-    
+    @OneToMany(mappedBy = "distribuidora")
+    private LinkedList<Producto> listaProductos;
 
     public Distribuidora() {
     }
 
-    public Distribuidora(int id, String nomnre, String numero) {
+    public Distribuidora(int id, String nomnre, String numero, LinkedList<Producto> listaProductos) {
         this.id = id;
         this.nomnre = nomnre;
         this.numero = numero;
-       
+        this.listaProductos = listaProductos;
     }
+
+    
 
     public int getId() {
         return id;
@@ -62,6 +65,16 @@ public class Distribuidora implements Serializable  {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+    public LinkedList<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(LinkedList<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+    
+    
 
 
     }
