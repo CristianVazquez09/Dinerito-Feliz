@@ -4,6 +4,11 @@
  */
 package com.mycompany.dineritoFeliz.igu;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Date;
+import javax.print.attribute.DateTimeSyntax;
+
 /**
  *
  * @author malaf
@@ -42,10 +47,12 @@ public class IngresarProductos extends javax.swing.JFrame {
         txtPrecioNeto = new javax.swing.JTextField();
         txtPrecioVenta = new javax.swing.JTextField();
         txtDistribuidora = new javax.swing.JTextField();
-        txtFechaEntrega = new javax.swing.JTextField();
-        txtFechaExp = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbTipoProducto = new javax.swing.JComboBox<>();
+        btnGuardar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        jdFechaExpiracion = new com.toedter.calendar.JDateChooser();
+        jdFechaEntrega = new com.toedter.calendar.JDateChooser();
 
         jButton1.setText("jButton1");
 
@@ -112,14 +119,30 @@ public class IngresarProductos extends javax.swing.JFrame {
         jPanel1.add(txtPrecioNeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 80, -1));
         jPanel1.add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 80, -1));
         jPanel1.add(txtDistribuidora, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
-        jPanel1.add(txtFechaEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 110, -1));
-        jPanel1.add(txtFechaExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 110, -1));
 
         jLabel9.setText("Distribuidora:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Abarrotes ", "Enlatados ", "Lacteos ", "Botanas ", "Dulcerio ", "Harinas y pan ", "Frutas y verduras ", "Bebidas ", "Bebidas Alcoholicas ", "Carnes y embutidos ", "Automedicacion ", "Higiene personal ", "Uso domestico ", "Otros ", " " }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, 20));
+        cmbTipoProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Abarrotes ", "Enlatados ", "Lacteos ", "Botanas ", "Dulcerio ", "Harinas y pan ", "Frutas y verduras ", "Bebidas ", "Bebidas Alcoholicas ", "Carnes y embutidos ", "Automedicacion ", "Higiene personal ", "Uso domestico ", "Otros ", " " }));
+        jPanel1.add(cmbTipoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, 20));
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, -1, -1));
+        jPanel1.add(jdFechaExpiracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 130, -1));
+        jPanel1.add(jdFechaEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,7 +154,7 @@ public class IngresarProductos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
         );
 
         pack();
@@ -141,11 +164,30 @@ public class IngresarProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEjemplaresActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       
+        txtDistribuidora.setText("");
+        txtEjemplares.setText("");
+        txtPrecioNeto.setText("");
+        txtPrecioVenta.setText("");
+        jdFechaEntrega.setDate(new Date());
+        jdFechaExpiracion.setDate(new Date());
+        cmbTipoProducto.setSelectedIndex(0);
+        
+        
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox<String> cmbTipoProducto;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -157,10 +199,10 @@ public class IngresarProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private com.toedter.calendar.JDateChooser jdFechaEntrega;
+    private com.toedter.calendar.JDateChooser jdFechaExpiracion;
     private javax.swing.JTextField txtDistribuidora;
     private javax.swing.JTextField txtEjemplares;
-    private javax.swing.JTextField txtFechaEntrega;
-    private javax.swing.JTextField txtFechaExp;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecioNeto;
     private javax.swing.JTextField txtPrecioVenta;

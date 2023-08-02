@@ -23,6 +23,7 @@ public class Producto implements Serializable   {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+    private String nombre;
     private double precioNeto;
     private double precioVenta;
     private int ejempleares; 
@@ -37,8 +38,9 @@ public class Producto implements Serializable   {
     public Producto() {
     }
 
-    public Producto(int id, double precioNeto, double precioVenta, int ejempleares, Date fechaEntrega, Date fechaExpiracion, Distribuidora distribuidora) {
+    public Producto(int id,String nombre, double precioNeto, double precioVenta, int ejempleares, Date fechaEntrega, Date fechaExpiracion, Distribuidora distribuidora) {
         this.id = id;
+        this.nombre=nombre;
         this.precioNeto = precioNeto;
         this.precioVenta = precioVenta;
         this.ejempleares = ejempleares;
@@ -54,6 +56,16 @@ public class Producto implements Serializable   {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 
     public double getPrecioNeto() {
         return precioNeto;

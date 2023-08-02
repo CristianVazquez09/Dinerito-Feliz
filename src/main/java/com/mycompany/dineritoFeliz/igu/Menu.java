@@ -39,7 +39,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnIngresarProduct = new javax.swing.JButton();
-        btnInfoVentas = new javax.swing.JButton();
+        btnIRegistroVentas = new javax.swing.JButton();
         btnInventario = new javax.swing.JButton();
         btnInformes = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -108,9 +108,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnInfoVentas.setBackground(new java.awt.Color(248, 245, 226));
-        btnInfoVentas.setForeground(new java.awt.Color(0, 0, 0));
-        btnInfoVentas.setText("Informe de Ventas");
+        btnIRegistroVentas.setBackground(new java.awt.Color(248, 245, 226));
+        btnIRegistroVentas.setForeground(new java.awt.Color(0, 0, 0));
+        btnIRegistroVentas.setText("Registros de Ventas");
+        btnIRegistroVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIRegistroVentasActionPerformed(evt);
+            }
+        });
 
         btnInventario.setBackground(new java.awt.Color(248, 245, 226));
         btnInventario.setForeground(new java.awt.Color(0, 0, 0));
@@ -129,7 +134,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInfoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIRegistroVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIngresarProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -139,7 +144,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addComponent(btnIngresarProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(btnInfoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIRegistroVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(btnInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -191,10 +196,16 @@ public class Menu extends javax.swing.JFrame {
         p.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnIngresarProductActionPerformed
 
+    private void btnIRegistroVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIRegistroVentasActionPerformed
+        RegistroVentas r = new RegistroVentas();
+        r.setVisible(true);
+        r.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnIRegistroVentasActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInfoVentas;
+    private javax.swing.JButton btnIRegistroVentas;
     private javax.swing.JButton btnInformes;
     private javax.swing.JButton btnIngresarProduct;
     private javax.swing.JButton btnInventario;

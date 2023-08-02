@@ -15,7 +15,6 @@ import com.mycompany.dineritoFeliz.persistencia.exceptions.NonexistentEntityExce
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
@@ -28,9 +27,7 @@ public class ProductoJpaController implements Serializable {
     }
 
     public ProductoJpaController() {
-        emf= Persistence.createEntityManagerFactory("DineritoFelizPU");
     }
-    
     
     private EntityManagerFactory emf = null;
 

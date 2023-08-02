@@ -3,7 +3,7 @@
 package com.mycompany.dineritoFeliz;
 
 import com.mycompany.dineritoFeliz.igu.Menu;
-import com.mycompany.dineritoFeliz.logica.Producto;
+
 
 /**
  *
@@ -16,7 +16,7 @@ public class DineritoFeliz {
          
          pantalla.setVisible(true);
          pantalla.setLocationRelativeTo(null);
-         Producto p = new Producto();
+         
 
                  
          
