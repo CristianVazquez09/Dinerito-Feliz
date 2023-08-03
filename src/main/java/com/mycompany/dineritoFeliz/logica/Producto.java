@@ -3,13 +3,13 @@ package com.mycompany.dineritoFeliz.logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,6 +33,7 @@ public class Producto implements Serializable   {
     private Date fechaExpiracion;
     
     @ManyToOne
+    @JoinColumn(name = "distribuidora_id")
     private Distribuidora distribuidora;
 
     public Producto() {
@@ -113,6 +114,16 @@ public class Producto implements Serializable   {
 
     public void setDistribuidora(Distribuidora distribuidora) {
         this.distribuidora = distribuidora;
+    }
+
+    void guardarDatos(String nombre, double precioNeto, double precioVenta, int ejemplares, Date fechaDeEntrega, Date fechaExpiracion, Distribuidora dis) {
+        this.nombre=nombre;
+        this.precioNeto=precioNeto;
+        this.precioVenta= precioVenta;
+        this.ejempleares=ejemplares;
+        this.fechaEntrega=fechaDeEntrega;
+        this.fechaExpiracion=fechaExpiracion;
+        this.distribuidora=dis;
     }
     
     

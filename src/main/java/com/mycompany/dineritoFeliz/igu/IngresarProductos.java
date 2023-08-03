@@ -4,10 +4,13 @@
  */
 package com.mycompany.dineritoFeliz.igu;
 
+import com.mycompany.dineritoFeliz.logica.Controladora;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
 import javax.print.attribute.DateTimeSyntax;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +21,9 @@ public class IngresarProductos extends javax.swing.JFrame {
     /**
      * Creates new form IngresarProductos
      */
+    Controladora control;
     public IngresarProductos() {
+        this.control= new Controladora();
         initComponents();
     }
 
@@ -165,7 +170,22 @@ public class IngresarProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEjemplaresActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        String distribuidora =txtDistribuidora.getText();
+        String nombre = txtNombre.getText();
+        double precioNeto = Double.parseDouble(txtPrecioNeto.getText());
+        double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
+        int ejemplares = Integer.parseInt(txtEjemplares.getText());
+        Date fechaDeEntrega = jdFechaEntrega.getDate();
+        Date fechaExpiracion = jdFechaExpiracion.getDate();
+        
+        
+        control.guardarDatos(nombre,precioNeto,precioVenta,ejemplares,fechaDeEntrega,fechaExpiracion,distribuidora);
+        
+        JOptionPane optionPane = new JOptionPane("Se guardo correctamente");
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Guardado Exitoso");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -176,6 +196,7 @@ public class IngresarProductos extends javax.swing.JFrame {
         txtPrecioVenta.setText("");
         jdFechaEntrega.setDate(new Date());
         jdFechaExpiracion.setDate(new Date());
+        txtNombre.setText("");
         cmbTipoProducto.setSelectedIndex(0);
         
         

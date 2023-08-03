@@ -5,16 +5,18 @@
 package com.mycompany.dineritoFeliz.persistencia;
 
 import com.mycompany.dineritoFeliz.logica.Distribuidora;
-import com.mycompany.dineritoFeliz.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import com.mycompany.dineritoFeliz.logica.Producto;
+import com.mycompany.dineritoFeliz.persistencia.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 /**
  *
@@ -25,12 +27,9 @@ public class DistribuidoraJpaController implements Serializable {
     public DistribuidoraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-
-    public DistribuidoraJpaController() {
+     public DistribuidoraJpaController() {
         emf= Persistence.createEntityManagerFactory("DineritoFelizPU");
     }
-    
-    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -38,11 +37,29 @@ public class DistribuidoraJpaController implements Serializable {
     }
 
     public void create(Distribuidora distribuidora) {
+        if (distribuidora.getListaProductos() == null) {
+            distribuidora.setListaProductos(new ArrayList<Producto>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            ArrayList<Producto> attachedListaProductos = new ArrayList<Producto>();
+            for (Producto listaProductosProductoToAttach : distribuidora.getListaProductos()) {
+                listaProductosProductoToAttach = em.getReference(listaProductosProductoToAttach.getClass(), listaProductosProductoToAttach.getId());
+                attachedListaProductos.add(listaProductosProductoToAttach);
+            }
+            distribuidora.setListaProductos(attachedListaProductos);
             em.persist(distribuidora);
+            for (Producto listaProductosProducto : distribuidora.getListaProductos()) {
+                Distribuidora oldDistribuidoraOfListaProductosProducto = listaProductosProducto.getDistribuidora();
+                listaProductosProducto.setDistribuidora(distribuidora);
+                listaProductosProducto = em.merge(listaProductosProducto);
+                if (oldDistribuidoraOfListaProductosProducto != null) {
+                    oldDistribuidoraOfListaProductosProducto.getListaProductos().remove(listaProductosProducto);
+                    oldDistribuidoraOfListaProductosProducto = em.merge(oldDistribuidoraOfListaProductosProducto);
+                }
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -56,7 +73,34 @@ public class DistribuidoraJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Distribuidora persistentDistribuidora = em.find(Distribuidora.class, distribuidora.getId());
+            ArrayList<Producto> listaProductosOld = persistentDistribuidora.getListaProductos();
+            ArrayList<Producto> listaProductosNew = distribuidora.getListaProductos();
+            ArrayList<Producto> attachedListaProductosNew = new ArrayList<Producto>();
+            for (Producto listaProductosNewProductoToAttach : listaProductosNew) {
+                listaProductosNewProductoToAttach = em.getReference(listaProductosNewProductoToAttach.getClass(), listaProductosNewProductoToAttach.getId());
+                attachedListaProductosNew.add(listaProductosNewProductoToAttach);
+            }
+            listaProductosNew = attachedListaProductosNew;
+            distribuidora.setListaProductos(listaProductosNew);
             distribuidora = em.merge(distribuidora);
+            for (Producto listaProductosOldProducto : listaProductosOld) {
+                if (!listaProductosNew.contains(listaProductosOldProducto)) {
+                    listaProductosOldProducto.setDistribuidora(null);
+                    listaProductosOldProducto = em.merge(listaProductosOldProducto);
+                }
+            }
+            for (Producto listaProductosNewProducto : listaProductosNew) {
+                if (!listaProductosOld.contains(listaProductosNewProducto)) {
+                    Distribuidora oldDistribuidoraOfListaProductosNewProducto = listaProductosNewProducto.getDistribuidora();
+                    listaProductosNewProducto.setDistribuidora(distribuidora);
+                    listaProductosNewProducto = em.merge(listaProductosNewProducto);
+                    if (oldDistribuidoraOfListaProductosNewProducto != null && !oldDistribuidoraOfListaProductosNewProducto.equals(distribuidora)) {
+                        oldDistribuidoraOfListaProductosNewProducto.getListaProductos().remove(listaProductosNewProducto);
+                        oldDistribuidoraOfListaProductosNewProducto = em.merge(oldDistribuidoraOfListaProductosNewProducto);
+                    }
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -85,6 +129,11 @@ public class DistribuidoraJpaController implements Serializable {
                 distribuidora.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The distribuidora with id " + id + " no longer exists.", enfe);
+            }
+            ArrayList<Producto> listaProductos = distribuidora.getListaProductos();
+            for (Producto listaProductosProducto : listaProductos) {
+                listaProductosProducto.setDistribuidora(null);
+                listaProductosProducto = em.merge(listaProductosProducto);
             }
             em.remove(distribuidora);
             em.getTransaction().commit();

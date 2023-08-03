@@ -4,20 +4,26 @@
  */
 package com.mycompany.dineritoFeliz.igu;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.dineritoFeliz.logica.Producto;
+import javax.swing.UIManager;
 
 /**
  *
  * @author malaf
  */
 
+
 public class Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
+        
     public Menu() {
         initComponents();
+
+
         
     }
 
@@ -120,10 +126,20 @@ public class Menu extends javax.swing.JFrame {
         btnInventario.setBackground(new java.awt.Color(248, 245, 226));
         btnInventario.setForeground(new java.awt.Color(0, 0, 0));
         btnInventario.setText("Inventario");
+        btnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInventarioActionPerformed(evt);
+            }
+        });
 
         btnInformes.setBackground(new java.awt.Color(248, 245, 226));
         btnInformes.setForeground(new java.awt.Color(0, 0, 0));
         btnInformes.setText("Informes");
+        btnInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -196,11 +212,24 @@ public class Menu extends javax.swing.JFrame {
         p.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnIngresarProductActionPerformed
 
+    
     private void btnIRegistroVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIRegistroVentasActionPerformed
         RegistroVentas r = new RegistroVentas();
         r.setVisible(true);
         r.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnIRegistroVentasActionPerformed
+
+    private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        Inventario i = new Inventario();
+        i.setVisible(true);
+        i.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnInventarioActionPerformed
+
+    private void btnInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformesActionPerformed
+        Informes info = new Informes();
+        info.setVisible(true);
+        info.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnInformesActionPerformed
 
 
 
