@@ -116,7 +116,7 @@ public class Producto implements Serializable   {
         this.distribuidora = distribuidora;
     }
 
-    void guardarDatos(String nombre, double precioNeto, double precioVenta, int ejemplares, Date fechaDeEntrega, Date fechaExpiracion, Distribuidora dis) {
+    public void guardarDatos(String nombre, double precioNeto, double precioVenta, int ejemplares, Date fechaDeEntrega, Date fechaExpiracion, Distribuidora dis) {
         this.nombre=nombre;
         this.precioNeto=precioNeto;
         this.precioVenta= precioVenta;
@@ -125,6 +125,18 @@ public class Producto implements Serializable   {
         this.fechaExpiracion=fechaExpiracion;
         this.distribuidora=dis;
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precioNeto=" + precioNeto + ", precioVenta=" + precioVenta + ", ejempleares=" + ejempleares + ", fechaEntrega=" + fechaEntrega + ", fechaExpiracion=" + fechaExpiracion + ", distribuidora=" + distribuidora +'}';
+    }
+
+    public Object[] traerDatos() {
+        Object[] datos ={id,nombre,precioNeto,precioVenta,ejempleares,fechaEntrega,fechaExpiracion,distribuidora.mostrarNombreNumero()};
+        return datos;
+    }
+    
+    
     
     
     

@@ -27,7 +27,7 @@ public class DistribuidoraJpaController implements Serializable {
     public DistribuidoraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-     public DistribuidoraJpaController() {
+    public DistribuidoraJpaController() {
         emf= Persistence.createEntityManagerFactory("DineritoFelizPU");
     }
     private EntityManagerFactory emf = null;

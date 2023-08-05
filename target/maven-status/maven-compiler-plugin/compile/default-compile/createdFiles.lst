@@ -5,12 +5,14 @@ com\mycompany\dineritoFeliz\igu\IngresarProductos$3.class
 com\mycompany\dineritoFeliz\persistencia\ProductoJpaController.class
 com\mycompany\dineritoFeliz\persistencia\ControladoraPersistencia.class
 com\mycompany\dineritoFeliz\persistencia\exceptions\PreexistingEntityException.class
+com\mycompany\dineritoFeliz\igu\RegistroVentas$1.class
 com\mycompany\dineritoFeliz\logica\Distribuidora_.class
 com\mycompany\dineritoFeliz\igu\Inventario$2.class
 com\mycompany\dineritoFeliz\logica\Producto_.class
 com\mycompany\dineritoFeliz\igu\Inventario$1.class
 com\mycompany\dineritoFeliz\igu\Menu$2.class
 com\mycompany\dineritoFeliz\persistencia\exceptions\NonexistentEntityException.class
+com\mycompany\dineritoFeliz\igu\Inventario$4.class
 com\mycompany\dineritoFeliz\igu\IngresarProductos$2.class
 com\mycompany\dineritoFeliz\igu\RegistroVentas.class
 com\mycompany\dineritoFeliz\logica\Controladora.class

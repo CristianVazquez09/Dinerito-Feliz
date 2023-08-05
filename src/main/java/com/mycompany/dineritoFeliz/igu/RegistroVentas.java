@@ -4,6 +4,10 @@
  */
 package com.mycompany.dineritoFeliz.igu;
 
+import com.mycompany.dineritoFeliz.logica.Controladora;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author malaf
@@ -13,8 +17,10 @@ public class RegistroVentas extends javax.swing.JFrame {
     /**
      * Creates new form RegistroVentas
      */
+    Controladora control=null;
     public RegistroVentas() {
         initComponents();
+        this.control= new Controladora();
     }
 
     /**
@@ -31,9 +37,9 @@ public class RegistroVentas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtCantidadVendida = new javax.swing.JTextField();
+        txtProductoVendido = new javax.swing.JTextField();
+        btnGuardarVenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,13 +77,18 @@ public class RegistroVentas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         jLabel2.setText("Producto Vendido:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 30));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 190, -1));
+        jPanel1.add(txtCantidadVendida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, -1));
+        jPanel1.add(txtProductoVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 190, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jButton1.setText("Guardar Venta");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        btnGuardarVenta.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuardarVenta.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        btnGuardarVenta.setText("Guardar Venta");
+        btnGuardarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarVentaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,19 +104,31 @@ public class RegistroVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    public void prueba (){
+    private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
+        String nombreProducto = txtProductoVendido.getText();
+        int cantidadVendida= Integer.parseInt(txtCantidadVendida.getText());
         
-    }
+        control.registarVenta(nombreProducto,cantidadVendida);
+        
+        JOptionPane optionPane = new JOptionPane("Se registro la venta correctamente");
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Guardado Exitoso");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnGuardarVentaActionPerformed
+
+   
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnGuardarVenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtCantidadVendida;
+    private javax.swing.JTextField txtProductoVendido;
     // End of variables declaration//GEN-END:variables
 }

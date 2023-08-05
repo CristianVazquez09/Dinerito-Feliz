@@ -27,7 +27,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Distribuidora implements Serializable  {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @Basic
     private String nomnre;
@@ -35,8 +35,7 @@ public class Distribuidora implements Serializable  {
     
     @OneToMany(mappedBy = "distribuidora", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<Producto> listaProductos;
-    @OneToOne(mappedBy = "distribuidora")
-    private Producto producto;
+    
 
     public Distribuidora() {
     }
@@ -99,6 +98,13 @@ public class Distribuidora implements Serializable  {
         return distribuidorasNums.get(dis);
     }
 
+    public Object mostrarNombreNumero() {
+        return nomnre + numero;
+    }
+
+   
+
+    
    
     
     
