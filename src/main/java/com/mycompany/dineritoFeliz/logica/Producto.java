@@ -135,6 +135,8 @@ public class Producto implements Serializable   {
         Object[] datos ={id,nombre,precioNeto,precioVenta,ejempleares,fechaEntrega,fechaExpiracion,distribuidora.mostrarNombreNumero()};
         return datos;
     }
+
+
     
     
     

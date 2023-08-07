@@ -1,6 +1,7 @@
 com\mycompany\dineritoFeliz\logica\Producto.class
 com\mycompany\dineritoFeliz\persistencia\exceptions\IllegalOrphanException.class
 com\mycompany\dineritoFeliz\igu\Menu.class
+com\mycompany\dineritoFeliz\igu\ModificarProducto$2.class
 com\mycompany\dineritoFeliz\igu\IngresarProductos$3.class
 com\mycompany\dineritoFeliz\persistencia\ProductoJpaController.class
 com\mycompany\dineritoFeliz\persistencia\ControladoraPersistencia.class
@@ -18,6 +19,7 @@ com\mycompany\dineritoFeliz\igu\RegistroVentas.class
 com\mycompany\dineritoFeliz\logica\Controladora.class
 com\mycompany\dineritoFeliz\igu\Informes.class
 com\mycompany\dineritoFeliz\igu\Inventario.class
+com\mycompany\dineritoFeliz\igu\ModificarProducto$1.class
 com\mycompany\dineritoFeliz\igu\Menu$3.class
 com\mycompany\dineritoFeliz\persistencia\DistribuidoraJpaController.class
 com\mycompany\dineritoFeliz\igu\Menu$4.class
@@ -27,3 +29,5 @@ com\mycompany\dineritoFeliz\logica\Distribuidora.class
 com\mycompany\dineritoFeliz\igu\IngresarProductos$1.class
 com\mycompany\dineritoFeliz\DineritoFeliz.class
 com\mycompany\dineritoFeliz\igu\Menu$1.class
+com\mycompany\dineritoFeliz\igu\ModificarProducto.class
+com\mycompany\dineritoFeliz\igu\ModificarProducto$3.class

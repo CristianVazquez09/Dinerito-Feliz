@@ -6,11 +6,9 @@ package com.mycompany.dineritoFeliz.igu;
 
 import com.mycompany.dineritoFeliz.logica.Controladora;
 import com.mycompany.dineritoFeliz.logica.Producto;
-import java.awt.Color;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.LookAndFeel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,11 +20,12 @@ public class Inventario extends javax.swing.JFrame {
     /**
      * Creates new form Inventario
      */
-    Controladora control=null;
+    Controladora control = null;
+
     public Inventario() {
-        this.control= new Controladora();
+        this.control = new Controladora();
         initComponents();
-        
+
     }
 
     /**
@@ -142,10 +141,31 @@ public class Inventario extends javax.swing.JFrame {
         cargarDatos();
     }//GEN-LAST:event_formWindowOpened
 
+    //Boton para editar 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        //Validando que la tabla tenga productos  
+        if (tablaProductos.getRowCount() > 0) {
+            //Controlar que se haya seleccionado un producto
+            if (tablaProductos.getSelectedRow() != -1) {
+                //Obteniendo el id del producto a eliminar
+                int id_Producto = Integer.parseInt(String.valueOf(tablaProductos.getValueAt(tablaProductos.getSelectedRow(), 0)));
+                //Creamos una instancia de un Jframe para editar los datos del producto selecionado 
+                ModificarProducto modificar = new ModificarProducto(id_Producto);
+                modificar.setVisible(true);
+                modificar.setLocationRelativeTo(null);
+
+                this.dispose();
+
+            } else {
+                mostrarMensaje("No se selecciono ningun producto ", "Error", "Error al eliminar");
+            }
+        } else {
+
+            mostrarMensaje("No hay productos que editar", "Error", "NullPointerExcpetion");
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    //Boton para  eliminar 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (tablaProductos.getRowCount() > 0) {
             //Controlar que se haya seleccionado un producto
@@ -160,16 +180,17 @@ public class Inventario extends javax.swing.JFrame {
                 cargarDatos();
 
             } else {
-                mostrarMensaje("No hay mascotas que eliminar", "Error", "NullPointerExcpetion");
+                mostrarMensaje("No se selecciono ningun producto", "Error", "Error al eliminar");
             }
         } else {
-            mostrarMensaje("No se selecciono ninguna mascota", "Error", "Error al eliminar");
+
+            mostrarMensaje("No hay productos que eliminar", "Error", "NullPointerExcpetion");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-
-    public void cargarDatos (){
-                DefaultTableModel tabla = new DefaultTableModel() {
+    //Metodo que carga los datos de la tabla 
+    public void cargarDatos() {
+        DefaultTableModel tabla = new DefaultTableModel() {
 
             //Filas y columnas no editables 
             @Override
@@ -180,24 +201,31 @@ public class Inventario extends javax.swing.JFrame {
 
         //Nombres de las columnas 
         String titulos[] = {"ID", "Nombre", "Precio Neto", "Precio de Venta", "Ejemplares", "Fecha de entrega", "Fecha de expiracion", "Distribuidora"};
-        
+
+        //Asignando los titulos de las columnas 
         tabla.setColumnIdentifiers(titulos);
-        
-         List<Producto> listaProductos = control.traerProductos();
+
+        //Creando la lista que contiene todos los datos de la base de datos 
+        List<Producto> listaProductos = control.traerProductos();
         if (!listaProductos.isEmpty()) {
 
+            //Asignando todos los productos a una vector de objetos 
             for (Producto producto : listaProductos) {
+                //Obteniendo los valores de producto 
                 Object[] objeto = producto.traerDatos();
 
+                //Asignando los datos del producto a la fila 
                 tabla.addRow(objeto);
 
             }
         }
-        
+
+        //Asignanod el modelo de tabla 
         tablaProductos.setModel(tabla);
     }
-    
-        public void mostrarMensaje(String mensaje, String tipo, String titulo) {
+
+    //Metodo para mostrar mensajes
+    public void mostrarMensaje(String mensaje, String tipo, String titulo) {
         JOptionPane optionPane = new JOptionPane(mensaje);
         if (tipo.equalsIgnoreCase("informacion")) {
             optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
