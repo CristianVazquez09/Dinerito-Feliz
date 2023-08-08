@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.dineritoFeliz.logica.Producto</class>
     <class>com.mycompany.dineritoFeliz.logica.Distribuidora</class>
+    <class>com.mycompany.dineritoFeliz.logica.Venta</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dinerito-feliz?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

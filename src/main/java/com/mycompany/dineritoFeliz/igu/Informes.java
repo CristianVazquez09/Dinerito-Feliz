@@ -4,6 +4,8 @@
  */
 package com.mycompany.dineritoFeliz.igu;
 
+import com.mycompany.dineritoFeliz.logica.Controladora;
+
 /**
  *
  * @author malaf
@@ -13,7 +15,9 @@ public class Informes extends javax.swing.JFrame {
     /**
      * Creates new form Informes
      */
+    private Controladora control=null;
     public Informes() {
+        control= new Controladora();
         initComponents();
         
     }
@@ -37,6 +41,11 @@ public class Informes extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(25, 75, 124));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,7 +66,7 @@ public class Informes extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Producto mas vendido:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 150, -1));
-        jPanel1.add(txtProducMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, -1));
+        jPanel1.add(txtProducMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 150, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -77,6 +86,14 @@ public class Informes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        String [] ventas=control.informeDeVentas();
+        
+        txtIngresosGenerados.setText(ventas[0]);
+        txtProducMasVendido.setText(ventas[1]);
+        txtProducMenosVendido.setText(ventas[2]);
+    }//GEN-LAST:event_formWindowOpened
 
 
 

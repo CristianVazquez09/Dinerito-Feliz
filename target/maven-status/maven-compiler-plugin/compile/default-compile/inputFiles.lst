@@ -3,6 +3,7 @@ C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\igu\Inventario.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\logica\Producto.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\igu\IngresarProductos.java
+C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\logica\Venta.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\persistencia\ProductoJpaController.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\igu\Informes.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\igu\RegistroVentas.java
@@ -10,6 +11,7 @@ C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\DineritoFeliz.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\persistencia\DistribuidoraJpaController.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\persistencia\ControladoraPersistencia.java
+C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\persistencia\VentaJpaController.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\persistencia\exceptions\NonexistentEntityException.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\persistencia\exceptions\PreexistingEntityException.java
 C:\Users\malaf\Documents\Proyecto 2.0\Dinerito-Feliz\src\main\java\com\mycompany\dineritoFeliz\igu\ModificarProducto.java

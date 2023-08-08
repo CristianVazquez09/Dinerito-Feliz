@@ -6,6 +6,7 @@ package com.mycompany.dineritoFeliz.persistencia;
 
 import com.mycompany.dineritoFeliz.logica.Distribuidora;
 import com.mycompany.dineritoFeliz.logica.Producto;
+import com.mycompany.dineritoFeliz.logica.Venta;
 import com.mycompany.dineritoFeliz.persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class ControladoraPersistencia {
 
     ProductoJpaController productoJPA = new ProductoJpaController();
     DistribuidoraJpaController distribuidoraJPA = new DistribuidoraJpaController();
+    VentaJpaController ventaJPA = new VentaJpaController();
 
     public void guardar(Producto produc, Distribuidora dis) {
 
@@ -58,6 +60,32 @@ public class ControladoraPersistencia {
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public boolean comprobarProducto(String nomProducto) {
+        ArrayList<Producto> listaProductos = traerProductos();
+
+        boolean existe = false;
+
+        for (Producto listaD : listaProductos) {
+            if (listaD.getNombre().equalsIgnoreCase(nomProducto)) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+
+    public int traerIdProducto(String nomProducto) {
+
+        ArrayList<Producto> listaProducto = traerProductos();
+        int id = 0;
+        for (Producto listaD : listaProducto) {
+            if (listaD.getNombre().equalsIgnoreCase(nomProducto)) {
+                id = listaD.getId();
+            }
+        }
+
+        return id;
     }
 
     //----------------METODOS CRUD DE DISTRIBUIDORA -------------------
@@ -117,31 +145,28 @@ public class ControladoraPersistencia {
         return id;
 
     }
-
-    public boolean comprobarProducto(String nomProducto) {
-        ArrayList<Producto> listaProductos = traerProductos();
-
-        boolean existe = false;
-
-        for (Producto listaD : listaProductos) {
-            if (listaD.getNombre().equalsIgnoreCase(nomProducto)) {
-                existe = true;
-            }
-        }
-        return existe;
+    
+    //-----------Metodos CRUD de venta-------------
+    public void crearVenta (Venta venta ){
+        ventaJPA.create(venta);
     }
-
-    public int traerIdProducto(String nomProducto) {
-
-        ArrayList<Producto> listaProducto = traerProductos();
-        int id = 0;
-        for (Producto listaD : listaProducto) {
-            if (listaD.getNombre().equalsIgnoreCase(nomProducto)) {
-                id = listaD.getId();
-            }
+    
+    public Venta traerVenta (int id){
+        return ventaJPA.findVenta(id);
+    }
+    public ArrayList<Venta> traerVentas (){
+        List<Venta> lista = ventaJPA.findVentaEntities();
+        ArrayList<Venta>listaVentas = new ArrayList<>(lista);
+        
+        return listaVentas;
+    }
+    
+    public void editarVenta (Venta venta){
+        try {
+            ventaJPA.edit(venta);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return id;
     }
 
 }

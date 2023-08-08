@@ -3,6 +3,7 @@ package com.mycompany.dineritoFeliz.logica;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,19 +38,32 @@ public class Producto implements Serializable   {
     @JoinColumn(name = "distribuidora_id")
     private Distribuidora distribuidora;
 
+//    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Venta> listaVentas;
     public Producto() {
     }
 
-    public Producto(int id,String nombre, double precioNeto, double precioVenta, int ejempleares, Date fechaEntrega, Date fechaExpiracion, Distribuidora distribuidora) {
+    public Producto(int id, String nombre, double precioNeto, double precioVenta, int ejempleares, Date fechaEntrega, Date fechaExpiracion, Distribuidora distribuidora) {
         this.id = id;
-        this.nombre=nombre;
+        this.nombre = nombre;
         this.precioNeto = precioNeto;
         this.precioVenta = precioVenta;
         this.ejempleares = ejempleares;
         this.fechaEntrega = fechaEntrega;
         this.fechaExpiracion = fechaExpiracion;
         this.distribuidora = distribuidora;
+        //this.listaVentas = listaVentas;
     }
+
+//    public List<Venta> getListaVentas() {
+//        return listaVentas;
+//    }
+//
+//    public void setListaVentas(List<Venta> listaVentas) {
+//        this.listaVentas = listaVentas;
+//    }
+
+    
 
     public int getId() {
         return id;
