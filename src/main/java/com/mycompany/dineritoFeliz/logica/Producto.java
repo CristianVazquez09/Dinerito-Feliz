@@ -3,25 +3,20 @@ package com.mycompany.dineritoFeliz.logica;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author malaf
- */
+
 @Entity
 public class Producto implements Serializable   {
-    
+  
+    //Atributos de la clase 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
@@ -38,8 +33,7 @@ public class Producto implements Serializable   {
     @JoinColumn(name = "distribuidora_id")
     private Distribuidora distribuidora;
 
-//    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Venta> listaVentas;
+    //Constructores 
     public Producto() {
     }
 
@@ -52,19 +46,9 @@ public class Producto implements Serializable   {
         this.fechaEntrega = fechaEntrega;
         this.fechaExpiracion = fechaExpiracion;
         this.distribuidora = distribuidora;
-        //this.listaVentas = listaVentas;
     }
 
-//    public List<Venta> getListaVentas() {
-//        return listaVentas;
-//    }
-//
-//    public void setListaVentas(List<Venta> listaVentas) {
-//        this.listaVentas = listaVentas;
-//    }
-
-    
-
+    //Metodos getter y setter 
     public int getId() {
         return id;
     }
@@ -81,8 +65,7 @@ public class Producto implements Serializable   {
         this.nombre = nombre;
     }
     
-    
-
+   
     public double getPrecioNeto() {
         return precioNeto;
     }
@@ -131,6 +114,7 @@ public class Producto implements Serializable   {
         this.distribuidora = distribuidora;
     }
 
+    //Metodo que guarda los datos de los productos 
     public void guardarDatos(String nombre, double precioNeto, double precioVenta, int ejemplares, Date fechaDeEntrega, Date fechaExpiracion, Distribuidora dis) {
         this.nombre=nombre;
         this.precioNeto=precioNeto;
@@ -141,14 +125,11 @@ public class Producto implements Serializable   {
         this.distribuidora=dis;
     }
 
-    @Override
-    public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precioNeto=" + precioNeto + ", precioVenta=" + precioVenta + ", ejempleares=" + ejempleares + ", fechaEntrega=" + fechaEntrega + ", fechaExpiracion=" + fechaExpiracion + ", distribuidora=" + distribuidora +'}';
-    }
-
+    //Metodo que duvuelve los datos del producto
     public Object[] traerDatos() {
+         // Crea un nuevo arreglo de objetos
         Object[] datos ={id,nombre,precioNeto,precioVenta,ejempleares,fechaEntrega,fechaExpiracion,distribuidora.mostrarNombreNumero()};
-        return datos;
+        return datos;// Devuelve el arreglo de objetos con la información del producto
     }
 
 

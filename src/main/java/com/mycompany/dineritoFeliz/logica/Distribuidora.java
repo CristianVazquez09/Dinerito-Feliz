@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.dineritoFeliz.logica;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -16,16 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-/**
- *
- * @author malaf
- */
+
+
 @Entity
 public class Distribuidora implements Serializable  {
+    //Atributos 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
@@ -37,6 +29,7 @@ public class Distribuidora implements Serializable  {
     private ArrayList<Producto> listaProductos;
     
 
+    //Constructores
     public Distribuidora() {
     }
 
@@ -48,7 +41,7 @@ public class Distribuidora implements Serializable  {
     }
 
     
-
+    //Metodos getters y setters
     public int getId() {
         return id;
     }
@@ -81,6 +74,7 @@ public class Distribuidora implements Serializable  {
         this.listaProductos = listaProductos;
     }
 
+    //Metodo que busca el numero de una distribuidora 
     String buscarNumDistribuidora(String distribuidora) {
     
         String dis = distribuidora.toLowerCase();
@@ -98,16 +92,9 @@ public class Distribuidora implements Serializable  {
         return distribuidorasNums.get(dis);
     }
 
+    //Metodo que muestra el nombre y numero de la distribuidora 
     public Object mostrarNombreNumero() {
         return nomnre + numero;
     }
-
-   
-
     
-   
-    
-    
-
-
     }

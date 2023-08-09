@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.dineritoFeliz.persistencia;
-
 import com.mycompany.dineritoFeliz.logica.Distribuidora;
 import com.mycompany.dineritoFeliz.logica.Producto;
 import com.mycompany.dineritoFeliz.logica.Venta;
@@ -13,16 +8,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author malaf
- */
 public class ControladoraPersistencia {
 
-    ProductoJpaController productoJPA = new ProductoJpaController();
-    DistribuidoraJpaController distribuidoraJPA = new DistribuidoraJpaController();
-    VentaJpaController ventaJPA = new VentaJpaController();
+    //Controlares de persistencia de cada clase 
+    private ProductoJpaController productoJPA = new ProductoJpaController();
+    private DistribuidoraJpaController distribuidoraJPA = new DistribuidoraJpaController();
+    private VentaJpaController ventaJPA = new VentaJpaController();
 
+    //Metodo que guarda un producto y distribuidora 
     public void guardar(Producto produc, Distribuidora dis) {
 
         distribuidoraJPA.create(dis);
@@ -61,7 +54,7 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    //Metodo que comprueba si existe un producto 
     public boolean comprobarProducto(String nomProducto) {
         ArrayList<Producto> listaProductos = traerProductos();
 
@@ -74,7 +67,7 @@ public class ControladoraPersistencia {
         }
         return existe;
     }
-
+    //Metodo que retorna el id de un producto por su nombre 
     public int traerIdProducto(String nomProducto) {
 
         ArrayList<Producto> listaProducto = traerProductos();
@@ -118,7 +111,7 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    //Metodo que checa si existe la distribuidora por su nombre 
     public boolean comprobarDistribuidora(String distribuidora) {
         ArrayList<Distribuidora> listaDistribuidoras = traerDistribuidoras();
 
@@ -131,7 +124,7 @@ public class ControladoraPersistencia {
         }
         return existe;
     }
-
+    //Metodo que retorna el id de la distribuidora por su nombre
     public int traerIdDistribuidora(String distribuidora) {
 
         ArrayList<Distribuidora> listaDistribuidoras = traerDistribuidoras();

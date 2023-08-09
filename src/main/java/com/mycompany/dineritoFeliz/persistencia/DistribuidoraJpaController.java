@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.dineritoFeliz.persistencia;
 
 import com.mycompany.dineritoFeliz.logica.Distribuidora;
@@ -18,10 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author malaf
- */
+
 public class DistribuidoraJpaController implements Serializable {
 
     public DistribuidoraJpaController(EntityManagerFactory emf) {

@@ -2,21 +2,16 @@
 package com.mycompany.dineritoFeliz.logica;
 
 import java.io.Serializable;
-import javax.annotation.processing.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
-/**
- *
- * @author malaf
- */
+
+
 @Entity
 public class Venta implements Serializable {
+    //Atributo
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
@@ -25,6 +20,7 @@ public class Venta implements Serializable {
     private int cantidadVendida;
     private double precioVenta;
 
+    //Constores 
     public Venta() {
     }
 
@@ -35,6 +31,7 @@ public class Venta implements Serializable {
         this.precioVenta = precioVenta;
     }
 
+    //Metodos getters y setters 
     public int getCantidadVendida() {
         return cantidadVendida;
     }
@@ -50,8 +47,6 @@ public class Venta implements Serializable {
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
     }
-
-    
 
     public int getId() {
         return id;
