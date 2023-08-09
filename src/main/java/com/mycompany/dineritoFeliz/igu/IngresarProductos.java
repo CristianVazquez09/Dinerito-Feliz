@@ -2,6 +2,7 @@
 package com.mycompany.dineritoFeliz.igu;
 
 import com.mycompany.dineritoFeliz.logica.Controladora;
+import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -99,6 +100,12 @@ public class IngresarProductos extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha de expiración:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 120, -1));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 180, -1));
         jPanel1.add(txtEjemplares, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 80, -1));
         jPanel1.add(txtPrecioNeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 80, -1));
@@ -181,6 +188,12 @@ public class IngresarProductos extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if (!(Character.isLetter(evt.getKeyChar())) && !(evt.getKeyChar()==KeyEvent.VK_SPACE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
 
