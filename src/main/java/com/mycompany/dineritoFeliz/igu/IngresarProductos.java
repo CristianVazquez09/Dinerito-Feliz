@@ -1,6 +1,7 @@
 package com.mycompany.dineritoFeliz.igu;
 
 import com.mycompany.dineritoFeliz.logica.Controladora;
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JLabel;
@@ -262,7 +263,7 @@ public class IngresarProductos extends javax.swing.JFrame {
     //Metodo que guarda los datos 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        if (estaVacio() ) {
+        if (estaVacio()) {
             mensaje.mostrarMensaje("No puedes dejar campos vacios", "advertencia", "Advertencia");
 
         } else {
@@ -285,19 +286,29 @@ public class IngresarProductos extends javax.swing.JFrame {
 
     private void txtDistribuidoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDistribuidoraKeyTyped
 
+        // Inicializa una variable para contar el número de espacios en blanco.
         int spaceCount = 0;
+
+        // Recorre cada caracter en el texto del campo txtDistribuidora.
         for (int i = 0; i < txtDistribuidora.getText().length(); i++) {
+            // Si el caracter actual es un espacio en blanco, incrementa el contador.
             if (txtDistribuidora.getText().charAt(i) == ' ') {
                 spaceCount++;
             }
         }
+
+        // Verifica si el caracter ingresado no es una letra y tampoco es la tecla de espacio.
         if (!(Character.isLetter(evt.getKeyChar())) && !(evt.getKeyChar() == KeyEvent.VK_SPACE)) {
+            // Consumir el evento para evitar que el caracter no deseado sea mostrado en el campo.
             evt.consume();
+            // Muestra un mensaje de error indicando que no se pueden ingresar caracteres especiales.
             mensaje.mostrarMensaje("No puedes ingresar caracteres especiales al nombre de una distribuidora", "error", "ERROR");
         } else if (spaceCount >= 5) {
+            // Si se han ingresado más de 5 espacios en blanco, consumir el evento y mostrar un mensaje de error.
             evt.consume();
-            mensaje.mostrarMensaje("No puedes ingresar mas de 5 espacios en blanco", "error", "ERROR");
+            mensaje.mostrarMensaje("No puedes ingresar más de 5 espacios en blanco", "error", "ERROR");
         }
+
     }//GEN-LAST:event_txtDistribuidoraKeyTyped
 
     private void txtPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioVentaKeyTyped
@@ -346,58 +357,75 @@ public class IngresarProductos extends javax.swing.JFrame {
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
 
+        // Inicializa una variable para contar el número de espacios en blanco.
         int spaceCount = 0;
+
+        // Recorre cada caracter en el texto del campo txtNombre.
         for (int i = 0; i < txtNombre.getText().length(); i++) {
+            // Si el caracter actual es un espacio en blanco, incrementa el contador.
             if (txtNombre.getText().charAt(i) == ' ') {
                 spaceCount++;
             }
         }
 
+        // Verifica si el caracter ingresado no es una letra, ni la tecla de espacio, ni la tecla de retroceso.
         if (!(Character.isLetter(evt.getKeyChar())) && !(evt.getKeyChar() == KeyEvent.VK_SPACE) && !(evt.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
+            // Consumir el evento para evitar que el caracter no deseado sea mostrado en el campo. Y mostrar mensaje
             evt.consume();
             mensaje.mostrarMensaje("No puedes ingresar caracteres especiales al nombre de un producto", "error", "ERROR");
         } else if (spaceCount >= 5) {
+            // Si se han ingresado más de 5 espacios en blanco en el texto, consumir el evento y mostrar un mensaje de error.
             evt.consume();
-            mensaje.mostrarMensaje("No puedes ingresar mas de 5 espacios en blanco", "error", "ERROR");
+            mensaje.mostrarMensaje("No puedes ingresar más de 5 espacios en blanco", "error", "ERROR");
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private boolean estaVacio() {
-        boolean vacias=false;
-        JTextField[] camposTexto = {txtNombre, txtPrecioNeto, txtPrecioVenta, txtEjemplares,txtDistribuidora};
-        JLabel [] lista= {lblCampObli1,lblCampObli2,lblCampObli3,lblCampObli4,lblCampObli7};
-        int i=0;
+        // Variable para indicar si hay campos de texto vacíos.
+        boolean vacias = false;
+        // Array de campos de texto que se desean validar.
+        JTextField[] camposTexto = {txtNombre, txtPrecioNeto, txtPrecioVenta, txtEjemplares, txtDistribuidora};
+        // Array de etiquetas correspondientes a los campos de texto.
+        JLabel[] lista = {lblCampObli1, lblCampObli2, lblCampObli3, lblCampObli4, lblCampObli7};
+        // Índice para rastrear las etiquetas en el array.
+        int i = 0;
+        // Recorre cada campo de texto en el array.
         for (JTextField campo : camposTexto) {
+            // Verifica si el campo de texto está vacío después de eliminar espacios en blanco.
             if (campo.getText().trim().isEmpty()) {
-                vacias=true; // Si se encuentra un campo vacío, retorna true
+                vacias = true;
+                // Muestra la etiqueta correspondiente al campo de texto vacío.
                 lista[i].setVisible(true);
             }
             i++;
         }
-        
-        if(estaVacioFechas()){
-            vacias=true;
+        // Verifica si hay fechas vacías usando la función estaVacioFechas().
+        if (estaVacioFechas()) {
+            vacias = true;
         }
-        
-
-        return vacias; // Si ninguno de los campos está vacío, retorna false
+        // Retorna el valor de la variable "vacias".
+        return vacias;
     }
 
     public boolean estaVacioFechas() {
-        JLabel [] lista= {lblCampObli5,lblCampObli6};
-        boolean vacias=false;
+        // Crear un array de JLabels que corresponden a las etiquetas de campos obligatorios para las fechas
+        JLabel[] lista = {lblCampObli5, lblCampObli6};
+        // Inicializar una variable booleana para verificar si hay campos vacíos
+        boolean vacias = false;
+        // Crear un array de JDateChoosers que contienen las fechas que deben ser verificadas
+        JDateChooser[] fechas = {jdFechaEntrega, jdFechaExpiracion};
         
-        if (jdFechaEntrega.getDate() == null) {
-            vacias=true;
-            lista[0].setVisible(true);
-        } 
-        if (jdFechaExpiracion.getDate() == null  ){
-            vacias=true;
-            lista[1].setVisible(true);
+        for (int i = 0; i < fechas.length; i++) {
+            // Verificar si la fecha en la posición actual del array es nula
+            if (fechas[i].getDate() == null) {
+                // Si es nula, marcar la variable "vacias" como verdadera y mostrar la etiqueta correspondiente
+                vacias = true;
+                lista[i].setVisible(true);
+            }
         }
+        // Devolver el valor de "vacias"
         return vacias;
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -433,8 +461,8 @@ public class IngresarProductos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void ponerInvisiblelbl() {
-        JLabel [] lista= {lblCampObli1,lblCampObli2,lblCampObli3,lblCampObli4,lblCampObli5,lblCampObli6,lblCampObli7};
-        
+        JLabel[] lista = {lblCampObli1, lblCampObli2, lblCampObli3, lblCampObli4, lblCampObli5, lblCampObli6, lblCampObli7};
+
         for (JLabel jLabel : lista) {
             jLabel.setVisible(false);
         }
