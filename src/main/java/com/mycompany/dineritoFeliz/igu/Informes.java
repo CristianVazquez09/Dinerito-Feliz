@@ -23,11 +23,14 @@ public class Informes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtProducMenosVendido = new javax.swing.JTextField();
-        txtIngresosGenerados = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtProducMasVendido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        lblIngresosGenerados = new javax.swing.JLabel();
+        jToolBar2 = new javax.swing.JToolBar();
+        lblProductoMasVendido = new javax.swing.JLabel();
+        jToolBar3 = new javax.swing.JToolBar();
+        lblProductoMenosVendido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -48,19 +51,43 @@ public class Informes extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Producto menos vendido:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 170, -1));
-        jPanel1.add(txtProducMenosVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 160, -1));
-        jPanel1.add(txtIngresosGenerados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, -1));
 
         jLabel4.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Producto mas vendido:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 150, -1));
-        jPanel1.add(txtProducMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 150, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ingresos Generados");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, -1));
+
+        jToolBar1.setRollover(true);
+
+        lblIngresosGenerados.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lblIngresosGenerados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIngresosGenerados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToolBar1.add(lblIngresosGenerados);
+
+        jPanel1.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
+
+        jToolBar2.setRollover(true);
+
+        lblProductoMasVendido.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lblProductoMasVendido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblProductoMasVendido.setToolTipText("");
+        jToolBar2.add(lblProductoMasVendido);
+
+        jPanel1.add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 150, 30));
+
+        jToolBar3.setRollover(true);
+
+        lblProductoMenosVendido.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lblProductoMenosVendido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblProductoMenosVendido.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToolBar3.add(lblProductoMenosVendido);
+
+        jPanel1.add(jToolBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,7 +97,7 @@ public class Informes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -81,9 +108,12 @@ public class Informes extends javax.swing.JFrame {
         String [] ventas=control.informeDeVentas();
         
         //Asignando los valores a los TextField
-        txtIngresosGenerados.setText(ventas[0]);
-        txtProducMasVendido.setText(ventas[1]);
-        txtProducMenosVendido.setText(ventas[2]);
+        //txtIngresosGenerados.setText(ventas[0]);
+        lblIngresosGenerados.setText(ventas[0]);
+        //txtProducMasVendido.setText(ventas[1]);
+        lblProductoMasVendido.setText(ventas[1]);
+        //txtProducMenosVendido.setText(ventas[2]);
+        lblProductoMenosVendido.setText(ventas[2]);
     }//GEN-LAST:event_formWindowOpened
 
 
@@ -94,8 +124,11 @@ public class Informes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtIngresosGenerados;
-    private javax.swing.JTextField txtProducMasVendido;
-    private javax.swing.JTextField txtProducMenosVendido;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JToolBar jToolBar3;
+    private javax.swing.JLabel lblIngresosGenerados;
+    private javax.swing.JLabel lblProductoMasVendido;
+    private javax.swing.JLabel lblProductoMenosVendido;
     // End of variables declaration//GEN-END:variables
 }

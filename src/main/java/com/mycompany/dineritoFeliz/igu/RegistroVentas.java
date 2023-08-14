@@ -115,9 +115,16 @@ public class RegistroVentas extends javax.swing.JFrame {
             int cantidadVendida = Integer.parseInt(txtCantidadVendida.getText());
 
             //Llamando a la controladora para registrar la venta 
-            control.registarVenta(nombreProducto, cantidadVendida);
-            //Mostrando mensaje 
-            mensaje.mostrarMensaje("Se registro la venta correctamente", "informacion", "Guardado exitoso");
+            if (control.registarVenta(nombreProducto, cantidadVendida)) {
+                //Mostrando mensaje 
+                mensaje.mostrarMensaje("Se registro la venta correctamente", "informacion", "Guardado exitoso");
+                limpiar();
+            } else {
+                //Mostrando mensaje 
+                mensaje.mostrarMensaje("No se pudo registrar la venta ya que no exixte el producto\nComprueba que el producto haya sido escrito correctamente", "advertencia", "Error al guardar");
+                limpiar();
+            }
+
         }
     }//GEN-LAST:event_btnGuardarVentaActionPerformed
 
@@ -189,6 +196,11 @@ public class RegistroVentas extends javax.swing.JFrame {
         }
         // Retorna el valor de la variable "vacias".
         return vacias;
+    }
+    
+    public void limpiar (){
+        txtCantidadVendida.setText("");
+        txtProductoVendido.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

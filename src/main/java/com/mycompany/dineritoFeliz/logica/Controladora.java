@@ -10,13 +10,16 @@ public class Controladora {
     //Variable global de una lista de ventas 
     private ArrayList<Venta> listaVentas;
 
+    
+
     //---------------Metodos CRUD de productos--------------- 
     public void crearProducto(Producto producto) {
         control.crearProducto(producto);
-
+        
     }
 
     public Producto traerProducto(int id) {
+
         return control.traerProducto(id);
     }
 
@@ -110,7 +113,7 @@ public class Controladora {
     }
 
     //Metodo para registar Ventas 
-    public void registarVenta(String nombreProducto, int cantidadVendida) {
+    public boolean registarVenta(String nombreProducto, int cantidadVendida) {
         //Validando que el producto exista 
         if (control.comprobarProducto(nombreProducto)) {
             //Obteneidno el id del producto 
@@ -135,6 +138,9 @@ public class Controladora {
                     control.editarProduto(producto);
                 }
             }
+            return true;
+        } else {
+           return false;
         }
     }
 
@@ -188,28 +194,33 @@ public class Controladora {
         int menor = Integer.MAX_VALUE; // Variable para el producto menos vendido
         String masVendido = null, menosVendido = null; // Nombres de los productos más y menos vendidos
 
-        // Recorre la lista de ventas
-        for (Venta venta : listaVentas) {
-            ingresos += venta.getPrecioVenta(); // Suma el precio de venta al total de ingresos
-
-            // Comprueba si esta venta tiene una cantidad vendida mayor que el valor actual de "mayor"
-            if (venta.getCantidadVendida() > mayor) {
-                mayor = venta.getCantidadVendida(); // Actualiza "mayor" con la nueva cantidad
-                masVendido = venta.getNomProducto(); // Actualiza "masVendido" con el nombre del producto
+        if (listaVentas.isEmpty()) {
+            for (int i = 0; i < registroVentas.length; i++) {
+                registroVentas[i] = "---";
             }
+        } else {
+            // Recorre la lista de ventas
+            for (Venta venta : listaVentas) {
+                ingresos += venta.getPrecioVenta(); // Suma el precio de venta al total de ingresos
 
-            // Comprueba si esta venta tiene una cantidad vendida menor que el valor actual de "menor"
-            if (venta.getCantidadVendida() < menor) {
-                menor = venta.getCantidadVendida(); // Actualiza "menor" con la nueva cantidad
-                menosVendido = venta.getNomProducto(); // Actualiza "menosVendido" con el nombre del producto
+                // Comprueba si esta venta tiene una cantidad vendida mayor que el valor actual de "mayor"
+                if (venta.getCantidadVendida() > mayor) {
+                    mayor = venta.getCantidadVendida(); // Actualiza "mayor" con la nueva cantidad
+                    masVendido = venta.getNomProducto(); // Actualiza "masVendido" con el nombre del producto
+                }
+
+                // Comprueba si esta venta tiene una cantidad vendida menor que el valor actual de "menor"
+                if (venta.getCantidadVendida() < menor) {
+                    menor = venta.getCantidadVendida(); // Actualiza "menor" con la nueva cantidad
+                    menosVendido = venta.getNomProducto(); // Actualiza "menosVendido" con el nombre del producto
+                }
             }
+            String ingresosS = String.valueOf(ingresos); // Convierte el total de ingresos a string
+
+            registroVentas[0] = ingresosS; // Almacena el total de ingresos en el arreglo
+            registroVentas[1] = masVendido; // Almacena el producto más vendido en el arreglo
+            registroVentas[2] = menosVendido; // Almacena el producto menos vendido en el arreglo
         }
-
-        String ingresosS = String.valueOf(ingresos); // Convierte el total de ingresos a string
-
-        registroVentas[0] = ingresosS; // Almacena el total de ingresos en el arreglo
-        registroVentas[1] = masVendido; // Almacena el producto más vendido en el arreglo
-        registroVentas[2] = menosVendido; // Almacena el producto menos vendido en el arreglo
 
         return registroVentas; // Devuelve el arreglo con la información recopilada
     }
@@ -218,50 +229,48 @@ public class Controladora {
     public void guardarDatos(String nombre, double precioNeto, double precioVenta, int ejemplares, Date fechaDeEntrega, Date fechaExpiracion, String distribuidora) {
         // Si la distribuidora ya existe en la base de datos
         if (control.comprobarDistribuidora(distribuidora)) {
-            
+
             // Obtiendo el ID de la distribuidora existente
             int id = control.traerIdDistribuidora(distribuidora);
-            
+
             // Obtiendo la distribuidora desde la base de datos usando el ID
             Distribuidora distri = control.traerDistribuidora(id);
-            
+
             // Crea una nueva instancia de Producto
             Producto produc = new Producto();
-            
+
             // Configura los detalles del producto
             produc.guardarDatos(nombre, precioNeto, precioVenta, ejemplares, fechaDeEntrega, fechaExpiracion, distri);
-            
+
             // Crea el producto en la base de datos
             control.crearProducto(produc);
-            
+
             // Agrega el producto a la lista de productos de la distribuidora
             distri.getListaProductos().add(produc);
-            
+
             // Actualiza la distribuidora en la base de datos
             control.editarDistribuidora(distri);
-            
-            
+
         } else {// Si la distribuidora no existe en la base de datos
-            
+
             // Crea una nueva instancia de Distribuidora
             Distribuidora dis = new Distribuidora();
-            
+
             // Crea una nueva instancia de Producto
             Producto produc = new Producto();
-            
+
             // Configura el nombre de la distribuidora
             dis.setNomnre(distribuidora);
-            
+
             // Configura el número de la distribuidora
             String numDistribuidora = dis.buscarNumDistribuidora(distribuidora);
             dis.setNumero(numDistribuidora);
-            
+
             // Configura los detalles del producto
             produc.guardarDatos(nombre, precioNeto, precioVenta, ejemplares, fechaDeEntrega, fechaExpiracion, dis);
-            
+
             // Guarda tanto el producto como la distribuidora en la base de datos
             control.guardar(produc, dis);
-            
 
         }
 

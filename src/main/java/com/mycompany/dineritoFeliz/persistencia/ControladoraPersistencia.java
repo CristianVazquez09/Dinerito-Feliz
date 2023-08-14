@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.mycompany.dineritoFeliz.igu.Mensaje;
 
 public class ControladoraPersistencia {
 
@@ -15,11 +16,13 @@ public class ControladoraPersistencia {
     private DistribuidoraJpaController distribuidoraJPA = new DistribuidoraJpaController();
     private VentaJpaController ventaJPA = new VentaJpaController();
 
+    private Mensaje mensaje=null; 
     //Metodo que guarda un producto y distribuidora 
     public void guardar(Producto produc, Distribuidora dis) {
 
         distribuidoraJPA.create(dis);
         productoJPA.create(produc);
+        this.mensaje= new Mensaje();
 
     }
 
@@ -44,6 +47,7 @@ public class ControladoraPersistencia {
             productoJPA.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            mensaje.mostrarMensaje(ex.getMessage(), "Error", "Error al eliminar");
         }
     }
 
@@ -52,6 +56,7 @@ public class ControladoraPersistencia {
             productoJPA.edit(producto);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            mensaje.mostrarMensaje(ex.getMessage(), "Error", "Error al editar");
         }
     }
     //Metodo que comprueba si existe un producto 
@@ -96,11 +101,13 @@ public class ControladoraPersistencia {
         return listaDistribuidoras;
     }
 
-    public void eliminarDistribuidora(int id) {
+    public void eliminarDistribuidora(int id){
         try {
             distribuidoraJPA.destroy(id);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            mensaje.mostrarMensaje(ex.getMessage(), "Error", "Error al eliminar");
+            
         }
     }
 
@@ -109,6 +116,7 @@ public class ControladoraPersistencia {
             distribuidoraJPA.edit(d);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            mensaje.mostrarMensaje(ex.getMessage(), "Error", "Error al editar");
         }
     }
     //Metodo que checa si existe la distribuidora por su nombre 
@@ -159,6 +167,7 @@ public class ControladoraPersistencia {
             ventaJPA.edit(venta);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            mensaje.mostrarMensaje(ex.getMessage(), "Error", "Error al editar");
         }
     }
 

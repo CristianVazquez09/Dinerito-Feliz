@@ -13,11 +13,11 @@ public class ModificarProducto extends javax.swing.JFrame {
     //Instancia para hacer la logica del programa 
     private Controladora control = null;
     Mensaje mensaje = new Mensaje();
-    private Producto producto=null;
+    private Producto producto = null;
 
-    public ModificarProducto( int id_Producto) {
+    public ModificarProducto(int id_Producto) {
         this.control = new Controladora();
-        this.producto=new Producto();
+        this.producto = new Producto();
         initComponents();
         ponerInvisiblelbl();
         //Metodo que carga los datos del producto a modificar
@@ -268,19 +268,19 @@ public class ModificarProducto extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         //Recibiendo los datos ingresados de los Jtextfields
-        String distribuidora =txtDistribuidora.getText();
+        String distribuidora = txtDistribuidora.getText();
         String nombre = txtNombre.getText();
         double precioNeto = Double.parseDouble(txtPrecioNeto.getText());
         double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
         int ejemplares = Integer.parseInt(txtEjemplares.getText());
         Date fechaDeEntrega = jdFechaEntrega.getDate();
         Date fechaExpiracion = jdFechaExpiracion.getDate();
-        
+
         //La controladora modificando el producto
-        control.ModificarProducto(producto,nombre,precioNeto,precioVenta,ejemplares,fechaDeEntrega,fechaExpiracion,distribuidora);
-        
+        control.ModificarProducto(producto, nombre, precioNeto, precioVenta, ejemplares, fechaDeEntrega, fechaExpiracion, distribuidora);
+
         mensaje.mostrarMensaje("Guardado de cambios exitoso", "informacion", "Guardando");
-        
+
         //Volviendo a mostar la pantalla de inventario y cerrando esta ventana 
         Inventario i = new Inventario();
         i.setVisible(true);
@@ -289,20 +289,19 @@ public class ModificarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Metodo que carga los datos del producto a editar 
-    private void cargarDatos (int id_Producto){
+    private void cargarDatos(int id_Producto) {
         //Recuperando el producto a editar
-        this.producto= control.traerProducto(id_Producto);
-        
+        this.producto = control.traerProducto(id_Producto);
+
         //Poniendo los valores del producto a los TextFiels
         txtNombre.setText(producto.getNombre());
         txtPrecioNeto.setText(String.valueOf(producto.getPrecioNeto()));
-        txtPrecioVenta.setText(String.valueOf( producto.getPrecioVenta()));
+        txtPrecioVenta.setText(String.valueOf(producto.getPrecioVenta()));
         txtEjemplares.setText(String.valueOf(producto.getEjempleares()));
         jdFechaEntrega.setDate(producto.getFechaEntrega());
         jdFechaExpiracion.setDate(producto.getFechaExpiracion());
         txtDistribuidora.setText(producto.getDistribuidora().getNomnre());
-        
-        
+
     }
     private void txtDistribuidoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDistribuidoraKeyTyped
 
@@ -333,17 +332,26 @@ public class ModificarProducto extends javax.swing.JFrame {
 
     private void txtPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioVentaKeyTyped
         // Obtiene el carácter de la tecla presionada
-        char key1 = evt.getKeyChar();
+        char key = evt.getKeyChar();
 
         // Verifica si el carácter presionado no es un dígito numérico, un punto decimal ni la tecla de retroceso (borrar)
-        if (!Character.isDigit(key1) && key1 != '.' && key1 != KeyEvent.VK_BACK_SPACE) {
+        if (!Character.isDigit(key) && key != '.' && key != KeyEvent.VK_BACK_SPACE) {
             // Si no es un dígito numérico, un punto decimal ni retroceso, consume el evento
             evt.consume();
-            mensaje.mostrarMensaje("Solo puedes ingresar numeros en el precio de venta", "error", "ERROR");
-        } else if (key1 == '.' && txtPrecioVenta.getText().contains(".")) {
+            mensaje.mostrarMensaje("Solo puedes ingresar números y un punto decimal en el precio de venta", "error", "ERROR");
+        } else if (key == '.' && txtPrecioVenta.getText().contains(".")) {
             // Si la tecla presionada es un punto decimal y ya hay uno en el campo de texto, consume el evento
             evt.consume();
             mensaje.mostrarMensaje("Solo puedes ingresar un punto decimal en el precio de venta", "error", "ERROR");
+        } else if (key == '0' && (txtPrecioVenta.getText().isEmpty() || txtPrecioVenta.getCaretPosition() == 0)) {
+            // Si la tecla presionada es "0" y el campo está vacío o el "0" está al principio, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("No puedes ingresar un precio de 0 pesos", "error", "ERROR");
+
+        } else if (txtPrecioVenta.getText().startsWith(".")) {
+            // Verifica si el campo comienza con un punto decimal
+            evt.consume();
+            mensaje.mostrarMensaje("Debe haber un número antes del punto decimal", "error", "ERROR");
         }
     }//GEN-LAST:event_txtPrecioVentaKeyTyped
 
@@ -355,11 +363,21 @@ public class ModificarProducto extends javax.swing.JFrame {
         if (!Character.isDigit(key) && key != '.' && key != KeyEvent.VK_BACK_SPACE) {
             // Si no es un dígito numérico, un punto decimal ni retroceso, consume el evento
             evt.consume();
-            mensaje.mostrarMensaje("Solo puedes ingresar numeros en el precio de neto", "error", "ERROR");
+            mensaje.mostrarMensaje("Solo puedes ingresar números y un punto decimal en el precio de venta", "error", "ERROR");
         } else if (key == '.' && txtPrecioNeto.getText().contains(".")) {
             // Si la tecla presionada es un punto decimal y ya hay uno en el campo de texto, consume el evento
             evt.consume();
-            mensaje.mostrarMensaje("Solo puedes ingresar un punto decimal en el precio neto", "error", "ERROR");
+            mensaje.mostrarMensaje("Solo puedes ingresar un punto decimal en el precio de venta", "error", "ERROR");
+        } else if (key == '0' && (txtPrecioNeto.getText().isEmpty() || txtPrecioNeto.getCaretPosition() == 0)) {
+            // Si la tecla presionada es "0" y el campo está vacío o el "0" está al principio, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("No puedes ingresar un precio de 0 pesos", "error", "ERROR");
+
+        } else if (txtPrecioNeto.getText().startsWith(".")) {
+            // Verifica si el campo comienza con un punto decimal
+            evt.consume();
+            mensaje.mostrarMensaje("Debe haber un número antes del punto decimal", "error", "ERROR");
+            // Verifica si la tecla presionada es un punto decimal, la posición del cursor está después del inicio y el carácter anterior no es un dígito
         }
     }//GEN-LAST:event_txtPrecioNetoKeyTyped
 
@@ -372,6 +390,11 @@ public class ModificarProducto extends javax.swing.JFrame {
             // Si no es un dígito numérico ni retroceso, consume el evento
             evt.consume();
             mensaje.mostrarMensaje("Solo puedes ingresar numeros en los ejemplares", "error", "ERROR");
+        } else if (key == '0' && (txtEjemplares.getText().isEmpty() || txtEjemplares.getCaretPosition() == 0)) {
+            // Si la tecla presionada es "0" y el campo está vacío o el "0" está al principio, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("No puedes ingresar 0 al pricipio", "error", "ERROR");
+
         }
     }//GEN-LAST:event_txtEjemplaresKeyTyped
 
@@ -434,7 +457,7 @@ public class ModificarProducto extends javax.swing.JFrame {
         boolean vacias = false;
         // Crear un array de JDateChoosers que contienen las fechas que deben ser verificadas
         JDateChooser[] fechas = {jdFechaEntrega, jdFechaExpiracion};
-        
+
         for (int i = 0; i < fechas.length; i++) {
             // Verificar si la fecha en la posición actual del array es nula
             if (fechas[i].getDate() == null) {

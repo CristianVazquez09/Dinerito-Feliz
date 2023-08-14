@@ -313,34 +313,55 @@ public class IngresarProductos extends javax.swing.JFrame {
 
     private void txtPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioVentaKeyTyped
         // Obtiene el carácter de la tecla presionada
-        char key1 = evt.getKeyChar();
-
-        // Verifica si el carácter presionado no es un dígito numérico, un punto decimal ni la tecla de retroceso (borrar)
-        if (!Character.isDigit(key1) && key1 != '.' && key1 != KeyEvent.VK_BACK_SPACE) {
-            // Si no es un dígito numérico, un punto decimal ni retroceso, consume el evento
-            evt.consume();
-            mensaje.mostrarMensaje("Solo puedes ingresar numeros en el precio de venta", "error", "ERROR");
-        } else if (key1 == '.' && txtPrecioVenta.getText().contains(".")) {
-            // Si la tecla presionada es un punto decimal y ya hay uno en el campo de texto, consume el evento
-            evt.consume();
-            mensaje.mostrarMensaje("Solo puedes ingresar un punto decimal en el precio de venta", "error", "ERROR");
-        }
-    }//GEN-LAST:event_txtPrecioVentaKeyTyped
-
-    private void txtPrecioNetoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioNetoKeyTyped
-        // Obtiene el carácter de la tecla presionada
         char key = evt.getKeyChar();
 
         // Verifica si el carácter presionado no es un dígito numérico, un punto decimal ni la tecla de retroceso (borrar)
         if (!Character.isDigit(key) && key != '.' && key != KeyEvent.VK_BACK_SPACE) {
             // Si no es un dígito numérico, un punto decimal ni retroceso, consume el evento
             evt.consume();
-            mensaje.mostrarMensaje("Solo puedes ingresar numeros en el precio de neto", "error", "ERROR");
+            mensaje.mostrarMensaje("Solo puedes ingresar números y un punto decimal en el precio de venta", "error", "ERROR");
+        } else if (key == '.' && txtPrecioVenta.getText().contains(".")) {
+            // Si la tecla presionada es un punto decimal y ya hay uno en el campo de texto, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("Solo puedes ingresar un punto decimal en el precio de venta", "error", "ERROR");
+        } else if (key == '0' && (txtPrecioVenta.getText().isEmpty() || txtPrecioVenta.getCaretPosition() == 0)) {
+            // Si la tecla presionada es "0" y el campo está vacío o el "0" está al principio, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("No puedes ingresar un precio de 0 pesos", "error", "ERROR");
+           
+        } else if (txtPrecioVenta.getText().startsWith(".")) {
+            // Verifica si el campo comienza con un punto decimal
+            evt.consume();
+            mensaje.mostrarMensaje("Debe haber un número antes del punto decimal", "error", "ERROR");
+        } 
+
+    }//GEN-LAST:event_txtPrecioVentaKeyTyped
+
+    private void txtPrecioNetoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioNetoKeyTyped
+        // Obtiene el carácter de la tecla presionada
+        char key = evt.getKeyChar();
+
+
+        // Verifica si el carácter presionado no es un dígito numérico, un punto decimal ni la tecla de retroceso (borrar)
+        if (!Character.isDigit(key) && key != '.' && key != KeyEvent.VK_BACK_SPACE) {
+            // Si no es un dígito numérico, un punto decimal ni retroceso, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("Solo puedes ingresar números y un punto decimal en el precio de venta", "error", "ERROR");
         } else if (key == '.' && txtPrecioNeto.getText().contains(".")) {
             // Si la tecla presionada es un punto decimal y ya hay uno en el campo de texto, consume el evento
             evt.consume();
-            mensaje.mostrarMensaje("Solo puedes ingresar un punto decimal en el precio neto", "error", "ERROR");
-        }
+            mensaje.mostrarMensaje("Solo puedes ingresar un punto decimal en el precio de venta", "error", "ERROR");
+        } else if (key == '0' && (txtPrecioNeto.getText().isEmpty() || txtPrecioNeto.getCaretPosition() == 0)) {
+            // Si la tecla presionada es "0" y el campo está vacío o el "0" está al principio, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("No puedes ingresar un precio de 0 pesos", "error", "ERROR");
+            
+        } else if (txtPrecioNeto.getText().startsWith(".")) {
+            // Verifica si el campo comienza con un punto decimal
+            evt.consume();
+            mensaje.mostrarMensaje("Debe haber un número antes del punto decimal", "error", "ERROR");
+            // Verifica si la tecla presionada es un punto decimal, la posición del cursor está después del inicio y el carácter anterior no es un dígito
+        } 
     }//GEN-LAST:event_txtPrecioNetoKeyTyped
 
     private void txtEjemplaresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEjemplaresKeyTyped
@@ -352,6 +373,11 @@ public class IngresarProductos extends javax.swing.JFrame {
             // Si no es un dígito numérico ni retroceso, consume el evento
             evt.consume();
             mensaje.mostrarMensaje("Solo puedes ingresar numeros en los ejemplares", "error", "ERROR");
+        } else if (key == '0' && (txtEjemplares.getText().isEmpty() || txtEjemplares.getCaretPosition() == 0)) {
+            // Si la tecla presionada es "0" y el campo está vacío o el "0" está al principio, consume el evento
+            evt.consume();
+            mensaje.mostrarMensaje("No puedes ingresar 0 al pricipio", "error", "ERROR");
+            
         }
     }//GEN-LAST:event_txtEjemplaresKeyTyped
 
@@ -414,7 +440,7 @@ public class IngresarProductos extends javax.swing.JFrame {
         boolean vacias = false;
         // Crear un array de JDateChoosers que contienen las fechas que deben ser verificadas
         JDateChooser[] fechas = {jdFechaEntrega, jdFechaExpiracion};
-        
+
         for (int i = 0; i < fechas.length; i++) {
             // Verificar si la fecha en la posición actual del array es nula
             if (fechas[i].getDate() == null) {
