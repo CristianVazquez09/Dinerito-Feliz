@@ -2,6 +2,7 @@
 package com.mycompany.dineritoFeliz.logica;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -127,8 +128,12 @@ public class Producto implements Serializable   {
 
     //Metodo que duvuelve los datos del producto
     public Object[] traerDatos() {
+        //Darle un fromato a las fechas 
+        SimpleDateFormat formato = new SimpleDateFormat("EEEE dd/MM/yyyy");
+        String fechaE= formato.format(fechaEntrega);
+        String fechaEx=formato.format(fechaExpiracion);
          // Crea un nuevo arreglo de objetos
-        Object[] datos ={id,nombre,precioNeto,precioVenta,ejempleares,fechaEntrega,fechaExpiracion,distribuidora.mostrarNombreNumero()};
+        Object[] datos ={id,nombre,precioNeto,precioVenta,ejempleares,fechaE,fechaEx,distribuidora.getNomnre()};
         return datos;// Devuelve el arreglo de objetos con la información del producto
     }
 

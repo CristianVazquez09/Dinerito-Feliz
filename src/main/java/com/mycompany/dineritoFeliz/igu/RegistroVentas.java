@@ -37,6 +37,7 @@ public class RegistroVentas extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(50, 146, 202));
 
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Registro de Ventas");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

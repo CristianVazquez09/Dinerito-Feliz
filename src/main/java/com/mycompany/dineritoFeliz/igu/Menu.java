@@ -2,10 +2,13 @@
 package com.mycompany.dineritoFeliz.igu;
 
 
+
+
 public class Menu extends javax.swing.JFrame {
 
     public Menu() {
-        initComponents();   
+        initComponents();  
+        
     }
 
     @SuppressWarnings("unchecked")

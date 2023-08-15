@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+
 public class IngresarProductos extends javax.swing.JFrame {
 
     //Instancia para hacer la logica del programa 
@@ -17,6 +18,7 @@ public class IngresarProductos extends javax.swing.JFrame {
         this.control = new Controladora();
 
         initComponents();
+        
         ponerInvisiblelbl();
     }
 
