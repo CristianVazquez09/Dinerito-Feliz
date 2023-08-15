@@ -267,25 +267,30 @@ public class ModificarProducto extends javax.swing.JFrame {
     //Metodo que guarda los datos 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        //Recibiendo los datos ingresados de los Jtextfields
-        String distribuidora = txtDistribuidora.getText();
-        String nombre = txtNombre.getText();
-        double precioNeto = Double.parseDouble(txtPrecioNeto.getText());
-        double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
-        int ejemplares = Integer.parseInt(txtEjemplares.getText());
-        Date fechaDeEntrega = jdFechaEntrega.getDate();
-        Date fechaExpiracion = jdFechaExpiracion.getDate();
+        if (estaVacio()) {
+            mensaje.mostrarMensaje("No puedes dejar campos vacios", "advertencia", "Advertencia");
+        } else {
+            //Recibiendo los datos ingresados de los Jtextfields
+            String distribuidora = txtDistribuidora.getText();
+            String nombre = txtNombre.getText();
+            double precioNeto = Double.parseDouble(txtPrecioNeto.getText());
+            double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
+            int ejemplares = Integer.parseInt(txtEjemplares.getText());
+            Date fechaDeEntrega = jdFechaEntrega.getDate();
+            Date fechaExpiracion = jdFechaExpiracion.getDate();
 
-        //La controladora modificando el producto
-        control.ModificarProducto(producto, nombre, precioNeto, precioVenta, ejemplares, fechaDeEntrega, fechaExpiracion, distribuidora);
+            //La controladora modificando el producto
+            control.ModificarProducto(producto, nombre, precioNeto, precioVenta, ejemplares, fechaDeEntrega, fechaExpiracion, distribuidora);
 
-        mensaje.mostrarMensaje("Guardado de cambios exitoso", "informacion", "Guardando");
+            mensaje.mostrarMensaje("Guardado de cambios exitoso", "informacion", "Guardando");
 
-        //Volviendo a mostar la pantalla de inventario y cerrando esta ventana 
-        Inventario i = new Inventario();
-        i.setVisible(true);
-        i.setLocationRelativeTo(null);
-        this.dispose();
+            //Volviendo a mostar la pantalla de inventario y cerrando esta ventana 
+            Inventario i = new Inventario();
+            i.setVisible(true);
+            i.setLocationRelativeTo(null);
+            this.dispose();
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Metodo que carga los datos del producto a editar 
